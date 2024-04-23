@@ -10,7 +10,7 @@
   },
   "dependencies": {
     "ethers": "^6.10.0",
-    "fhevmjs": "^0.2.2",
+    "fhevmjs": "^0.4.0",
     "next": "14.0.4",
     "react": "^18",
     "react-dom": "^18"
