@@ -1,5 +1,7 @@
 import { isAddress } from "ethers";
-import { initFhevm, createInstance, FhevmInstance } from "fhevmjs";
+import { initFhevm, createInstance, FhevmInstance } from "fhevmjs/bundle";
+
+const ACL_ADDRESS: string = "0x9479B455904dCccCf8Bc4f7dF8e9A1105cBa2A8e";
 
 export type Keypair = {
   publicKey: string;
@@ -14,7 +16,7 @@ type Keypairs = {
 };
 
 export const init = async () => {
-  await initFhevm();
+  await initFhevm({ thread: navigator.hardwareConcurrency });
 };
 
 let instancePromise: Promise<FhevmInstance>;
@@ -24,14 +26,20 @@ const keypairs: Keypairs = {};
 
 export const createFhevmInstance = async () => {
   if (instancePromise) return instancePromise;
-  instancePromise = createInstance({ network: window.ethereum });
+
+  instancePromise = createInstance({
+    network: window.ethereum,
+    aclContractAddress: ACL_ADDRESS,
+    kmsContractAddress: "0x904Af2B61068f686838bD6257E385C2cE7a09195",
+    gatewayUrl: "https://gateway.sepolia.zama.ai/",
+  });
   instance = await instancePromise;
 };
 
 export const setKeypair = (
   contractAddress: string,
   userAddress: string,
-  keypair: Keypair
+  keypair: Keypair,
 ) => {
   if (!isAddress(contractAddress) || !isAddress(userAddress)) return;
   keypairs[userAddress][contractAddress] = keypair;
@@ -39,7 +47,7 @@ export const setKeypair = (
 
 export const getKeypair = (
   contractAddress: string,
-  userAddress: string
+  userAddress: string,
 ): Keypair | null => {
   if (!isAddress(contractAddress) || !isAddress(userAddress)) return null;
   return keypairs[userAddress]
