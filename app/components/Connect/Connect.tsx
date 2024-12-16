@@ -25,7 +25,9 @@ export const Connect: React.FC<{
   };
 
   const hasValidNetwork = async (): Promise<boolean> => {
-    const currentChainId: string = await window.ethereum.request({ method: 'eth_chainId' });
+    const currentChainId: string = await window.ethereum.request({
+      method: 'eth_chainId',
+    });
     return AUTHORIZED_CHAIN_ID.includes(currentChainId.toLowerCase());
   };
 
