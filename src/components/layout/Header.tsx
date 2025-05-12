@@ -13,6 +13,7 @@ import {
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { Menu } from "lucide-react";
+import Image from "next/image";
 
 const Header = () => {
   const [scrolled, setScrolled] = useState(false);
@@ -54,7 +55,13 @@ const Header = () => {
               transition={{ duration: 0.3 }}
               className="w-10 h-10 bg-primary flex items-center justify-center"
             >
-              <img src="/assets/zama-logo.png" alt="Zama" className="w-6 h-6" />
+              <Image
+                src="/assets/zama-logo.png"
+                alt="Zama"
+                width={24}
+                height={24}
+                className="w-6 h-6"
+              />
             </motion.div>
           </Link>
 

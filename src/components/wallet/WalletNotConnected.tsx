@@ -1,6 +1,7 @@
-import { Button } from '@/components/ui/button';
-import { motion } from 'framer-motion';
-import { useWallet } from '@/hooks/wallet/useWallet';
+import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
+import { useWallet } from "@/hooks/wallet/useWallet";
+import Image from "next/image";
 
 const WalletNotConnected = () => {
   const { isConnected, openConnectModal } = useWallet();
@@ -19,9 +20,11 @@ const WalletNotConnected = () => {
       className="flex flex-col items-center justify-center mt-12 p-12 bg-muted max-w-md mx-auto"
     >
       {/* <WalletIcon className="h-12 w-12 text-muted-foreground mb-4" /> */}
-      <img
+      <Image
         src="/assets/wallet.png"
         alt="Wallet"
+        width={48}
+        height={48}
         className="h-12 w-12 text-muted-foreground mb-4"
       />
       <h2 className="text-xl font-medium mb-2">Connect Your Wallet</h2>
