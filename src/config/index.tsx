@@ -11,7 +11,7 @@ if (!projectId) {
 }
 
 export const metadata = {
-  name: "Fhevm React Template",
+  name: "Fhevm Nextjs Template",
   description:
     "React starter template that allows you to interact with Zama fhevm",
   url: "https://www.zama.ai/", // origin must match your domain & subdomain

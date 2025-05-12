@@ -18,7 +18,7 @@ function App() {
           transition={{ duration: 0.3 }}
           className="mb-8 text-center"
         >
-          <h1 className="font-medium text-4xl mb-4">Fhevm React Template</h1>
+          <h1 className="font-medium text-4xl mb-4">Fhevm Nextjs Template</h1>
           <p className="text-muted-foreground text-md">
             See the{" "}
             <a
