@@ -1,9 +1,9 @@
-import { useState } from 'react';
-import { getInstance } from '@/lib/fhevm/fhevmjs';
-import { reencryptEuint64 } from '@/lib/fhevm/reencrypt';
-import { Signer } from 'ethers';
-import { FhevmInstance } from 'fhevmjs';
-import { useFhevm } from '@/providers/FhevmProvider';
+import { useState } from "react";
+import { getInstance } from "@/lib/fhevm/fhevmjs";
+import { reencryptEuint64 } from "@/lib/fhevm/reencrypt";
+import { Signer } from "ethers";
+import { FhevmInstance } from "fhevmjs";
+import { useFhevm } from "@/providers/FhevmProvider";
 
 interface useDecryptValueProps {
   signer: Signer | null;
@@ -11,7 +11,7 @@ interface useDecryptValueProps {
 
 export const useDecryptValue = ({ signer }: useDecryptValueProps) => {
   const [decryptedValue, setDecryptedValue] = useState<bigint | null>(null);
-  const [lastUpdated, setLastUpdated] = useState<string>('Never');
+  const [lastUpdated, setLastUpdated] = useState<string>("Never");
   const [isDecrypting, setIsDecrypting] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { isInitialized, instanceStatus } = useFhevm();
@@ -21,10 +21,10 @@ export const useDecryptValue = ({ signer }: useDecryptValueProps) => {
     setError(null);
     try {
       if (!signer)
-        throw new Error('Signer not initialized - please connect your wallet');
-      if (!isInitialized) throw new Error('Fhevm not initialized');
-      if (instanceStatus !== 'ready')
-        throw new Error('Create instance not initialized');
+        throw new Error("Signer not initialized - please connect your wallet");
+      if (!isInitialized) throw new Error("Fhevm not initialized");
+      if (instanceStatus !== "ready")
+        throw new Error("Create instance not initialized");
       if (!handle || handle === 0n) {
         setDecryptedValue(0n);
         setLastUpdated(new Date().toLocaleString());
@@ -45,12 +45,12 @@ export const useDecryptValue = ({ signer }: useDecryptValueProps) => {
       setDecryptedValue(clearBalance);
       setLastUpdated(new Date().toLocaleString());
     } catch (error) {
-      console.error('Decryption error:', error);
-      if (error === 'Handle is not initialized') {
+      console.error("Decryption error:", error);
+      if (error === "Handle is not initialized") {
         setDecryptedValue(0n);
       } else {
         setError(
-          error instanceof Error ? error.message : 'Failed to decrypt balance',
+          error instanceof Error ? error.message : "Failed to decrypt balance",
         );
         throw error;
       }

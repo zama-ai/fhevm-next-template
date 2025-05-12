@@ -1,9 +1,9 @@
-import { useEffect, useState } from 'react';
-import { useReadContract, useChainId } from 'wagmi';
-import { formatUnits } from '@/lib/helper';
-import { confidentialErc20Abi } from '@/abi/confidentialErc20Abi';
-import { useSigner } from '../wallet/useSigner';
-import { useDecryptValue } from '../fhevm/useDecryptValue';
+import { useEffect, useState } from "react";
+import { useReadContract, useChainId } from "wagmi";
+import { formatUnits } from "@/lib/helper";
+import { confidentialErc20Abi } from "@/abi/confidentialErc20Abi";
+import { useSigner } from "../wallet/useSigner";
+import { useDecryptValue } from "../fhevm/useDecryptValue";
 
 interface UseTokenBalanceProps {
   address?: string;
@@ -22,14 +22,14 @@ export function useTokenBalance({
 
   // Add validation for tokenAddress
   if (!tokenAddress) {
-    throw new Error('tokenAddress is required');
+    throw new Error("tokenAddress is required");
   }
 
-  const [balance, setBalance] = useState('0');
+  const [balance, setBalance] = useState("0");
   const [rawBalance, setRawBalance] = useState<bigint>(BigInt(0));
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<Error | null>(null);
-  const [tokenSymbol, setTokenSymbol] = useState<string>('');
+  const [tokenSymbol, setTokenSymbol] = useState<string>("");
   const [tokenDecimals, setTokenDecimals] = useState<number>(18);
 
   const { signer } = useSigner();
@@ -48,7 +48,7 @@ export function useTokenBalance({
   const tokenSymbolData = useReadContract({
     address: tokenAddress as `0x${string}`,
     abi: confidentialErc20Abi,
-    functionName: 'symbol',
+    functionName: "symbol",
     query: {
       enabled: enabled && !!tokenAddress,
     },
@@ -57,7 +57,7 @@ export function useTokenBalance({
   const tokenDecimalsData = useReadContract({
     address: tokenAddress as `0x${string}`,
     abi: confidentialErc20Abi,
-    functionName: 'decimals',
+    functionName: "decimals",
     query: {
       enabled: enabled && !!tokenAddress,
     },
@@ -67,7 +67,7 @@ export function useTokenBalance({
   const tokenBalanceData = useReadContract({
     address: tokenAddress as `0x${string}`,
     abi: confidentialErc20Abi,
-    functionName: 'balanceOf',
+    functionName: "balanceOf",
     args: address ? [address as `0x${string}`] : undefined,
     query: {
       enabled: enabled && !!address && !!tokenAddress,
@@ -116,7 +116,7 @@ export function useTokenBalance({
         const formattedBalance = formatUnits(decryptedBalance, tokenDecimals);
         setBalance(formattedBalance);
       } else {
-        setBalance('•••••••');
+        setBalance("•••••••");
       }
     }
   }, [

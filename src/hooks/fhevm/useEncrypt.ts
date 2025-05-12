@@ -1,5 +1,5 @@
-import { useState, useEffect } from 'react';
-import { getInstance } from '@/lib/fhevm/fhevmjs';
+import { useState, useEffect } from "react";
+import { getInstance } from "@/lib/fhevm/fhevmjs";
 
 type EncryptedAmount = {
   handles: Uint8Array[];
@@ -27,7 +27,7 @@ export const useEncrypt = () => {
 
         setEncryptedAmount(result);
       } catch (error) {
-        console.error('Encryption failed:', error);
+        console.error("Encryption failed:", error);
         throw error;
       } finally {
         setIsEncrypting(false);

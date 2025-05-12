@@ -1,11 +1,11 @@
-import { useEffect, useState } from 'react';
-import { useWriteContract, useWaitForTransactionReceipt } from 'wagmi';
-import { toHexString } from '@/lib/helper';
-import { toast } from 'sonner';
-import { useChain } from '@/hooks/wallet/useChain';
-import { useWallet } from '@/hooks/wallet/useWallet';
-import { parseUnits } from 'viem';
-import { useEncrypt } from '@/hooks/fhevm/useEncrypt';
+import { useEffect, useState } from "react";
+import { useWriteContract, useWaitForTransactionReceipt } from "wagmi";
+import { toHexString } from "@/lib/helper";
+import { toast } from "sonner";
+import { useChain } from "@/hooks/wallet/useChain";
+import { useWallet } from "@/hooks/wallet/useWallet";
+import { parseUnits } from "viem";
+import { useEncrypt } from "@/hooks/fhevm/useEncrypt";
 
 export const useConfidentialTransfer = () => {
   const { address } = useWallet();
@@ -58,18 +58,18 @@ export const useConfidentialTransfer = () => {
         address: contractAddress,
         abi: [
           {
-            name: 'transfer',
-            type: 'function',
-            stateMutability: 'nonpayable',
+            name: "transfer",
+            type: "function",
+            stateMutability: "nonpayable",
             inputs: [
-              { name: 'to', type: 'address' },
-              { name: 'handle', type: 'bytes32' },
-              { name: 'proof', type: 'bytes' },
+              { name: "to", type: "address" },
+              { name: "handle", type: "bytes32" },
+              { name: "proof", type: "bytes" },
             ],
-            outputs: [{ name: '', type: 'bool' }],
+            outputs: [{ name: "", type: "bool" }],
           },
         ],
-        functionName: 'transfer',
+        functionName: "transfer",
         args: [
           recipientAddress,
           toHexString(encryptedAmount.handles[0]) as `0x${string}`,
@@ -79,15 +79,15 @@ export const useConfidentialTransfer = () => {
         chain,
       });
 
-      toast.info('Confidential Transfer Initiated', {
+      toast.info("Confidential Transfer Initiated", {
         description:
-          'Processing encrypted transaction. This may take longer than regular transfers.',
+          "Processing encrypted transaction. This may take longer than regular transfers.",
       });
 
       resetEncrypt();
     } catch (error) {
-      console.error('Transfer failed:', error);
-      toast.error('Transfer failed. Please try again.');
+      console.error("Transfer failed:", error);
+      toast.error("Transfer failed. Please try again.");
     }
   }, [
     encryptedAmount,

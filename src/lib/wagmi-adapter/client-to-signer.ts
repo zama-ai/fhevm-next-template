@@ -1,6 +1,6 @@
-import { Config, getConnectorClient } from '@wagmi/core';
-import { BrowserProvider, JsonRpcSigner } from 'ethers';
-import type { Account, Chain, Client, Transport } from 'viem';
+import { Config, getConnectorClient } from "@wagmi/core";
+import { BrowserProvider, JsonRpcSigner } from "ethers";
+import type { Account, Chain, Client, Transport } from "viem";
 
 export function clientToSigner(client: Client<Transport, Chain, Account>) {
   const { account, chain, transport } = client;

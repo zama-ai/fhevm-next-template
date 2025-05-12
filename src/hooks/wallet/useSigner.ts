@@ -1,7 +1,7 @@
-import { useState, useEffect } from 'react';
-import { Signer } from 'ethers';
-import { getEthersSigner } from '@/lib/wagmi-adapter/client-to-signer';
-import { useConfig } from 'wagmi';
+import { useState, useEffect } from "react";
+import { Signer } from "ethers";
+import { getEthersSigner } from "@/lib/wagmi-adapter/client-to-signer";
+import { useConfig } from "wagmi";
 
 export function useSigner() {
   const config = useConfig();
@@ -12,12 +12,12 @@ export function useSigner() {
       try {
         const s = await getEthersSigner(config);
         if (!s) {
-          console.warn('Failed to initialize signer');
+          console.warn("Failed to initialize signer");
           return;
         }
         setSigner(s);
       } catch (error) {
-        console.error('Error initializing signer:', error);
+        console.error("Error initializing signer:", error);
       }
     };
     initSigner();
