@@ -1,15 +1,15 @@
-import { useState } from 'react';
-import { Button } from '@/components/ui/button';
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
 
-import { motion, AnimatePresence } from 'framer-motion';
-import { Wallet } from 'lucide-react';
-import { useWallet } from '@/hooks/wallet/useWallet';
-import { useAppKitAccount } from '@reown/appkit/react';
-import blockies from 'ethereum-blockies';
+import { motion, AnimatePresence } from "framer-motion";
+import { Wallet } from "lucide-react";
+import { useWallet } from "@/hooks/wallet/useWallet";
+import { useAppKitAccount } from "@reown/appkit/react";
+import blockies from "ethereum-blockies";
 
 const ConnectWallet = () => {
   const [isLoading, setIsLoading] = useState(false);
-  const { openConnectModal, disconnect } = useWallet();
+  const { openConnectModal } = useWallet();
   const { address, isConnected } = useAppKitAccount();
 
   const handleConnect = async () => {
@@ -17,7 +17,7 @@ const ConnectWallet = () => {
       setIsLoading(true);
       openConnectModal();
     } catch (error) {
-      console.error('Failed to connect wallet:', error);
+      console.error("Failed to connect wallet:", error);
     } finally {
       setIsLoading(false);
     }
@@ -72,7 +72,7 @@ const ConnectWallet = () => {
               onClick={() => openConnectModal()}
             >
               <img
-                src={address ? generateBlockie(address) : ''}
+                src={address ? generateBlockie(address) : ""}
                 alt="Address Blockie"
                 className="w-5 h-5"
               />

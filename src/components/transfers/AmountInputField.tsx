@@ -1,6 +1,6 @@
-import { Input } from '@/components/ui/input';
-import { Label } from '@/components/ui/label';
-import { Token } from '@/types/tokenTypes';
+import { Input } from "@/components/ui/input";
+import { Label } from "@/components/ui/label";
+import { Token } from "@/types/tokenTypes";
 
 interface AmountInputFieldProps {
   amount: string;
