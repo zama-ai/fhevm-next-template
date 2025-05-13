@@ -39,7 +39,6 @@ export const ConfidentialTransferForm = () => {
   const {
     transfer: confidentialTransfer,
     isEncrypting,
-    isPending,
     isConfirming,
     isConfirmed,
     hash,

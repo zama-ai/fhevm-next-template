@@ -8,20 +8,26 @@ type EncryptedAmount = {
 
 export const useEncrypt = () => {
   const [isEncrypting, setIsEncrypting] = useState(false);
-  const [encryptedAmount, setEncryptedAmount] = useState<EncryptedAmount>(null);
+  const [encryptedAmount, setEncryptedAmount] =
+    useState<EncryptedAmount | null>(null);
   const [amount, setAmount] = useState<bigint>(0n);
-  const [contractAddress, setContractAddress] = useState<`0x${string}`>(null);
-  const [userAddress, setUserAddress] = useState<`0x${string}`>(null);
+  const [contractAddress, setContractAddress] = useState<`0x${string}` | null>(
+    null
+  );
+  const [userAddress, setUserAddress] = useState<`0x${string}` | null>(null);
 
   useEffect(() => {
-    if (!isEncrypting) return;
+    if (!isEncrypting || !contractAddress || !userAddress) return;
     async function createEncryptedInput() {
       try {
         const instance = getInstance();
         // wait for next javascript event loop to enable rendering
         await new Promise((resolve) => setTimeout(resolve, 0));
         const result = await instance
-          .createEncryptedInput(contractAddress, userAddress)
+          .createEncryptedInput(
+            contractAddress as string,
+            userAddress as string
+          )
           .add64(BigInt(amount))
           .encrypt();
 
@@ -39,7 +45,7 @@ export const useEncrypt = () => {
   async function encryptAmount(
     contractAddress: `0x${string}`,
     userAddress: `0x${string}`,
-    amount: bigint,
+    amount: bigint
   ) {
     setContractAddress(contractAddress);
     setUserAddress(userAddress);

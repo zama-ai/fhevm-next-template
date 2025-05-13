@@ -6,6 +6,7 @@ import { Wallet } from "lucide-react";
 import { useWallet } from "@/hooks/wallet/useWallet";
 import { useAppKitAccount } from "@reown/appkit/react";
 import blockies from "ethereum-blockies";
+import Image from "next/image";
 
 const ConnectWallet = () => {
   const [isLoading, setIsLoading] = useState(false);
@@ -71,10 +72,12 @@ const ConnectWallet = () => {
               className="flex cursor-pointer items-center text-lg sm:text-sm sm:px-4 sm:py-3 py-6  gap-2"
               onClick={() => openConnectModal()}
             >
-              <img
+              <Image
                 src={address ? generateBlockie(address) : ""}
                 alt="Address Blockie"
                 className="w-5 h-5"
+                width={20}
+                height={20}
               />
               {address && formatAddress(address)}
             </Button>

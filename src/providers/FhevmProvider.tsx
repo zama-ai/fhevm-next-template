@@ -4,11 +4,11 @@ import {
   useEffect,
   useState,
   ReactNode,
-} from 'react';
-import { createFhevmInstance, getFhevmStatus } from '@/lib/fhevm/fhevmjs';
-import { init } from '@/lib/fhevm/fhevmjs';
-import { useWallet } from '@/hooks/wallet/useWallet';
-import { FhevmStatus } from '@/lib/fhevm/fhevmjs';
+} from "react";
+import { createFhevmInstance, getFhevmStatus } from "@/lib/fhevm/fhevmjs";
+import { init } from "@/lib/fhevm/fhevmjs";
+import { useWallet } from "@/hooks/wallet/useWallet";
+import { FhevmStatus } from "@/lib/fhevm/fhevmjs";
 
 interface FhevmContextType {
   isInitialized: boolean;
@@ -16,15 +16,14 @@ interface FhevmContextType {
 }
 
 export const FhevmContext = createContext<FhevmContextType | undefined>(
-  undefined,
+  undefined
 );
 
 export function FhevmProvider({ children }: { children: ReactNode }) {
   const [isInitialized, setIsInitialized] = useState(false);
   const [instanceStatus, setInstanceStatus] =
-    useState<FhevmStatus>('uninitialized');
+    useState<FhevmStatus>("uninitialized");
   const { isConnected, isSepoliaChain } = useWallet();
-  const [loading, setLoading] = useState(true);
 
   // Handle initial FHEVM library initialization
   useEffect(() => {
@@ -34,7 +33,7 @@ export function FhevmProvider({ children }: { children: ReactNode }) {
     init()
       .then(() => setIsInitialized(true))
       .catch((e) => {
-        console.error('Failed to initialize FHEVM:', e);
+        console.error("Failed to initialize FHEVM:", e);
         setIsInitialized(false);
       });
   }, []); // Only run once on mount
@@ -47,14 +46,14 @@ export function FhevmProvider({ children }: { children: ReactNode }) {
       createFhevmInstance()
         .then(() => setInstanceStatus(getFhevmStatus()))
         .catch((error) => {
-          console.error('Failed to create FHEVM instance:', error);
-          setInstanceStatus('error');
+          console.error("Failed to create FHEVM instance:", error);
+          setInstanceStatus("error");
         });
     }
 
     return () => {
       // Cleanup previous instance if necessary
-      setInstanceStatus('uninitialized');
+      setInstanceStatus("uninitialized");
     };
   }, [isInitialized, isConnected, isSepoliaChain]);
 
@@ -70,7 +69,7 @@ export function FhevmProvider({ children }: { children: ReactNode }) {
 export function useFhevm() {
   const context = useContext(FhevmContext);
   if (context === undefined) {
-    throw new Error('useFhevm must be used within a FhevmProvider');
+    throw new Error("useFhevm must be used within a FhevmProvider");
   }
   return context;
 }
