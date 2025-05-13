@@ -169,6 +169,9 @@ devDependencies:
   '@eslint/eslintrc':
     specifier: ^3.3.1
     version: 3.3.1
+  '@types/ethereum-blockies':
+    specifier: ^0.1.2
+    version: 0.1.2
   '@types/node':
     specifier: ^20.17.46
     version: 20.17.46
@@ -3182,6 +3185,10 @@ packages:
 
   /@types/estree@1.0.7:
     resolution: {integrity: sha512-w28IoSUCJpidD/TGviZwwMJckNESJZXFu7NBZ5YJ4mEUnNraUn9Pm8HSZm/jDF1pDWYKspWE7oVphigUPRakIQ==}
+    dev: true
+
+  /@types/ethereum-blockies@0.1.2:
+    resolution: {integrity: sha512-jNYm7AK2zXorjV+B0mYWrzqKQ2+AY5vSJSVUU4/YrJnxLheBBwCEVTlCLNDZsWZ7mH6qHsAtLpwuQLlDs2+P0A==}
     dev: true
 
   /@types/glob-to-regexp@0.4.4:
