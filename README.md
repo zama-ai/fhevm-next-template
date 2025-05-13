@@ -1,6 +1,6 @@
 # Fhevm Next.js Template
 
-A modern React template for building decentralized applications (dApps) with Fully Homomorphic Encryption (FHE) capabilities using `fhevmjs`.
+A modern Next.js template for building decentralized applications (dApps) with Fully Homomorphic Encryption (FHE) capabilities using `fhevmjs`.
 
 ## Features
 
@@ -90,7 +90,7 @@ For testing with real network conditions, deploy your dApp to Sepolia testnet:
 ## Learn More
 
 - [fhevm Documentation](https://docs.zama.ai/fhevm)
-- [React Documentation](https://nextjs.org/)
+- [Next.js Documentation](https://nextjs.org/)
 - [Wagmi Documentation](https://wagmi.sh/)
 
 ## Support
