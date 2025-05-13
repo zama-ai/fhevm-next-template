@@ -14,7 +14,7 @@ export const useConfidentialTransfer = () => {
     `0x${string}` | null
   >(null);
   const [contractAddress, setContractAddress] = useState<`0x${string}` | null>(
-    null
+    null,
   );
   const { encryptAmount, isEncrypting, encryptedAmount, resetEncrypt } =
     useEncrypt();
@@ -36,7 +36,7 @@ export const useConfidentialTransfer = () => {
     contractAddress: `0x${string}`,
     amount: string,
     recipientAddress: `0x${string}`,
-    tokenDecimals?: number
+    tokenDecimals?: number,
   ) {
     if (!amount || !address) return;
 

@@ -12,7 +12,7 @@ export const useEncrypt = () => {
     useState<EncryptedAmount | null>(null);
   const [amount, setAmount] = useState<bigint>(0n);
   const [contractAddress, setContractAddress] = useState<`0x${string}` | null>(
-    null
+    null,
   );
   const [userAddress, setUserAddress] = useState<`0x${string}` | null>(null);
 
@@ -26,7 +26,7 @@ export const useEncrypt = () => {
         const result = await instance
           .createEncryptedInput(
             contractAddress as string,
-            userAddress as string
+            userAddress as string,
           )
           .add64(BigInt(amount))
           .encrypt();
@@ -45,7 +45,7 @@ export const useEncrypt = () => {
   async function encryptAmount(
     contractAddress: `0x${string}`,
     userAddress: `0x${string}`,
-    amount: bigint
+    amount: bigint,
   ) {
     setContractAddress(contractAddress);
     setUserAddress(userAddress);
