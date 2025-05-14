@@ -68,7 +68,7 @@ export const getFhevmStatus = (): FhevmStatus => instanceStatus;
 export const setKeypair = (
   contractAddress: string,
   userAddress: string,
-  keypair: Keypair
+  keypair: Keypair,
 ) => {
   if (!isAddress(contractAddress) || !isAddress(userAddress)) return;
   keypairs[userAddress][contractAddress] = keypair;
@@ -76,7 +76,7 @@ export const setKeypair = (
 
 export const getKeypair = (
   contractAddress: string,
-  userAddress: string
+  userAddress: string,
 ): Keypair | null => {
   if (!isAddress(contractAddress) || !isAddress(userAddress)) return null;
   return keypairs[userAddress]
